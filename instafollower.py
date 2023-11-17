@@ -37,7 +37,7 @@ class InstaFollower():
         not_now_button.click()
 
         time.sleep(3)
-        not_now_button2 = self.driver.find_element(By.XPATH, '/html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/button[2]')
+        not_now_button2 = self.driver.find_element(By.XPATH, '/html/body/div[3]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/button[2]') 
         not_now_button2.click()
 
 
@@ -69,21 +69,15 @@ class InstaFollower():
             follow_btn = self.driver.find_element(By.XPATH, f'/html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]/div[1]/div/div[{_+1}]/div/div/div/div[3]/div/button') 
             # /html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]/div[1]/div/div[1]/div/div/div/div[3]/div/button
             # /html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]/div[1]/div/div[2]/div/div/div/div[3]/div/button
-            # follow_btn.click()
-            # try:
-            #     cancel_button = self.driver.find_element(By.XPATH, '/html/body/div[7]/div[1]/div/div[2]/div/div/div/div/div/div/button[2]')
-            #     cancel_button.click()
-            #     time.sleep(1)
-            # except NoSuchElementException:
-            #     follow_btn.click()
-            #     time.sleep(1)
-
-            if self.driver.find_element(By.XPATH, '/html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]/div[1]/div/div[1]/div/div/div/div[3]/div/button/div/div').text == 'Following':
-                pass
-            else:
+            # follow_btn.click
+            try:
                 follow_btn.click()
                 time.sleep(1)
-            
+            except ElementClickInterceptedException:
+                cancel_button = self.driver.find_element(By.XPATH, '/html/body/div[7]/div[1]/div/div[2]/div/div/div/div/div/div/button[2]')
+                cancel_button.click()
+                time.sleep(1)
+                
 
             # follow_btn.click()
             # if self.driver.find_element(By.XPATH, '/html/body/div[7]/div[1]/div/div[2]/div/div/div'):
