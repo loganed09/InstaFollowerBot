@@ -47,17 +47,16 @@ class InstaFollower():
         self.wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/header/section/ul/li[3]/a')))
         followers_btn = self.driver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/header/section/ul/li[3]/a')
         followers_btn.click()
-        #self.wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[6]/div[1]/div/div[2]/div/div/div')))
-        #self.wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[7]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]')))
+
         time.sleep(3)
         print('test2')
         follower_box = self.driver.find_element(By.XPATH, '/html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]')
         scroll = 0
-        while scroll < 2:
+        while scroll < 5:
             self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", follower_box)
             time.sleep(2)
             scroll += 1
-        # self.driver.execute_script("window.scrollTo(0, document.body.scrollTop)", follower_box)
+
         self.follow()
 
         
@@ -67,9 +66,7 @@ class InstaFollower():
         print(following_accts)
         for _ in range(len(following_accts)):
             follow_btn = self.driver.find_element(By.XPATH, f'/html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]/div[1]/div/div[{_+1}]/div/div/div/div[3]/div/button') 
-            # /html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]/div[1]/div/div[1]/div/div/div/div[3]/div/button
-            # /html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]/div[1]/div/div[2]/div/div/div/div[3]/div/button
-            # follow_btn.click
+
             try:
                 follow_btn.click()
                 time.sleep(1)
@@ -78,21 +75,6 @@ class InstaFollower():
                 cancel_button.click()
                 time.sleep(1)
                 
-
-            # follow_btn.click()
-            # if self.driver.find_element(By.XPATH, '/html/body/div[7]/div[1]/div/div[2]/div/div/div'):
-            #     cancel_button = self.driver.find_element(By.XPATH, '/html/body/div[7]/div[1]/div/div[2]/div/div/div/div/div/div/button[2]')
-            #     cancel_button.click()
-            #     time.sleep(1)
-            # else: 
-            #     follow_btn.click()
-            #     time.sleep(1)
-            
-
-            # /html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]/div[1]/div/div[1]
-            # /html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]/div[1]/div/div[1]/div/div/div/div[3]/div/button/div/div
-        #     /html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]/div[1]/div/div[1]
-        # /html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[4]/div[1]/div/div[2]
 
     def add_followers(self, username, password):
         self.login(username, password)
